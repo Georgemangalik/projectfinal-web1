@@ -1,89 +1,121 @@
 <!DOCTYPE html>
 <html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Halaman Posts</title>
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <link rel="stylesheet" href="style.css">
-</head>
-<body class="bg-gray-100 font-sans leading-normal tracking-normal flex flex-col min-h-screen">
 
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body
+    class="bg-gray-100 font-sans leading-normal tracking-normal flex flex-col min-h-screen"
+  >
     <nav class="bg-blue-600 p-4 shadow-lg">
-        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
-            <a href="index.html" class="text-white text-2xl font-bold mb-4 md:mb-0">Posts</a>
-            
-            <div class="flex flex-wrap justify-center space-x-4 md:space-x-6">
-                <a href="index.html" class="text-white hover:text-blue-200 transition duration-300">Home</a>
-                <a href="biodata.html" class="text-white hover:text-blue-200 transition duration-300">Biodata</a>
-                <a href="contactus.html" class="text-white hover:text-blue-200 transition duration-300">Contact Us</a>
-                
-                <a href="posts.html" class="text-white font-bold border-b-2 border-white">Posts</a>
-                
-                <a href="freepage.html" class="text-white hover:text-blue-200 transition duration-300">Free Page</a>
-            </div>
+      <div
+        class="container mx-auto flex flex-col md:flex-row justify-between items-center"
+      >
+        <a href="index.html" class="text-white text-2xl font-bold mb-4 md:mb-0"
+          >Posts</a
+        >
+
+        <div class="flex flex-wrap justify-center space-x-4 md:space-x-6">
+          <a
+            href="index.html"
+            class="text-white hover:text-blue-200 transition duration-300"
+            >Home</a
+          >
+          <a
+            href="biodata.html"
+            class="text-white hover:text-blue-200 transition duration-300"
+            >Biodata</a
+          >
+          <a
+            href="contactus.html"
+            class="text-white hover:text-blue-200 transition duration-300"
+            >Contact Us</a
+          >
+
+          <a
+            href="posts.html"
+            class="text-white font-bold border-b-2 border-white"
+            >Posts</a
+          >
+
+          <a
+            href="freepage.html"
+            class="text-white hover:text-blue-200 transition duration-300"
+            >Free Page</a
+          >
         </div>
+      </div>
     </nav>
 
     <main class="container mx-auto mt-10 p-5 flex-grow">
-        <h1 class="text-3xl font-bold text-center text-gray-800 mb-8">Data Post (Fetch API)</h1>
-        
-        <div id="loading" class="text-center text-gray-500 text-lg">
-            Sedang mengambil data...
-        </div>
+      <h1 class="text-3xl font-bold text-center text-gray-800 mb-8">
+        Data Post (Fetch API)
+      </h1>
 
-        <div id="post-container" class="hidden max-w-2xl mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-3xl custom-card-hover transition duration-500">
-            <div class="md:flex">
-                <div class="p-8 w-full">
-                    <div class="uppercase tracking-wide text-sm text-indigo-500 font-semibold mb-1">
-                        Post ID: <span id="post-id"></span>
-                    </div>
-                    <h2 id="post-title" class="block mt-1 text-2xl leading-tight font-medium text-black hover:underline">
-                        </h2>
-                    <p id="post-body" class="mt-4 text-gray-500 text-justify">
-                        </p>
-                </div>
+      <div id="loading" class="text-center text-gray-500 text-lg">
+        Sedang mengambil data...
+      </div>
+
+      <div
+        id="post-container"
+        class="hidden max-w-2xl mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-3xl custom-card-hover transition duration-500"
+      >
+        <div class="md:flex">
+          <div class="p-8 w-full">
+            <div
+              class="uppercase tracking-wide text-sm text-indigo-500 font-semibold mb-1"
+            >
+              Post ID: <span id="post-id"></span>
             </div>
+            <h2
+              id="post-title"
+              class="block mt-1 text-2xl leading-tight font-medium text-black hover:underline"
+            ></h2>
+            <p id="post-body" class="mt-4 text-gray-500 text-justify"></p>
+          </div>
         </div>
+      </div>
     </main>
 
     <footer class="bg-gray-800 text-white text-center p-4 mt-auto">
-        <p>&copy; 2024 - NIM 2381039</p>
+      <p>&copy; 2024 - NIM 2381039</p>
     </footer>
 
     <script>
-        // URL sesuai NIM akhiran 39
-        const apiUrl = 'https://jsonplaceholder.typicode.com/posts/39';
+      // URL sesuai NIM akhiran 39
+      const apiUrl = "https://jsonplaceholder.typicode.com/posts/39";
 
-        const loadingDiv = document.getElementById('loading');
-        const postContainer = document.getElementById('post-container');
-        const postIdEl = document.getElementById('post-id');
-        const postTitleEl = document.getElementById('post-title');
-        const postBodyEl = document.getElementById('post-body');
+      const loadingDiv = document.getElementById("loading");
+      const postContainer = document.getElementById("post-container");
+      const postIdEl = document.getElementById("post-id");
+      const postTitleEl = document.getElementById("post-title");
+      const postBodyEl = document.getElementById("post-body");
 
-        fetch(apiUrl)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Gagal mengambil data');
-                }
-                return response.json();
-            })
-            .then(data => {
-                loadingDiv.classList.add('hidden');
-                postContainer.classList.remove('hidden');
+      fetch(apiUrl)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Gagal mengambil data");
+          }
+          return response.json();
+        })
+        .then((data) => {
+          loadingDiv.classList.add("hidden");
+          postContainer.classList.remove("hidden");
 
-                postIdEl.textContent = data.id;
-                postTitleEl.textContent = data.title;
-                postBodyEl.textContent = data.body;
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                loadingDiv.textContent = 'Terjadi kesalahan saat memuat data.';
-                loadingDiv.classList.add('text-red-500');
-            });
+          postIdEl.textContent = data.id;
+          postTitleEl.textContent = data.title;
+          postBodyEl.textContent = data.body;
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+          loadingDiv.textContent = "Terjadi kesalahan saat memuat data.";
+          loadingDiv.classList.add("text-red-500");
+        });
     </script>
-
-</body>
+  </body>
 </html>
